@@ -17,7 +17,6 @@ public class MissionDemolition : MonoBehaviour
     public Text uitLevel;
     public Text uitShots;
     public Text uitButton;
-
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -27,11 +26,12 @@ public class MissionDemolition : MonoBehaviour
     public int shotsTaken;
     public GameObject castle;
     public GameMode mode = GameMode.idle;
-    public string showing = "Show Sling-shot";
+    public string showing = "Show Slingshot";
 
     void Start()
     {
         S = this;
+
         level = 0;
         levelMax = castles.Length;
         Startlevel();
@@ -56,6 +56,7 @@ public class MissionDemolition : MonoBehaviour
 
         SwitchView("Show Both");
         ProjectileLine.S.Clear();
+
         Goal.goalMet = false;
         UpdateGUI();
 
@@ -67,7 +68,7 @@ public class MissionDemolition : MonoBehaviour
         uitLevel.text = "Level: " + (level + 1) + " of " + levelMax;
         uitShots.text = "Shots Taken: " + shotsTaken;
     }
-    // Update is called once per frame
+
     void Update()
     {
         UpdateGUI();
@@ -76,7 +77,7 @@ public class MissionDemolition : MonoBehaviour
         {
             mode = GameMode.levelEnd;
             SwitchView("Show Both");
-            Invoke("Next Level", 2f);
+            Invoke("NextLevel", 2f);
         }
     }
 

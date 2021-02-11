@@ -989,6 +989,7 @@ MonoBehaviour:
   uitButton: {fileID: 1002536362}
   castlePos: {x: 50, y: -9.5, z: 0}
   castles:
+  - {fileID: 420907549548834373, guid: 7296714aef942b84ea6b76f019447bb6, type: 3}
   - {fileID: 420907549548834373, guid: e591590b8920b42439834765d2ed9c7d, type: 3}
   - {fileID: 420907549548834373, guid: 52aeebe45977adf41943bd30d970754d, type: 3}
   level: 0
