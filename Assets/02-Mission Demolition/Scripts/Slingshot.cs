@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    static private Slingshot S;
+
     [Header("Set in Inspector")]
     public GameObject prefabProjectile;
     [Header("Set Dynamically")]
@@ -11,13 +13,22 @@ public class Slingshot : MonoBehaviour
     public GameObject projectile;
     public bool aimingMode;
 
-    public float velocityMult = 8f;
+    public float velocityMult = 18f;
     private Rigidbody projectileRigidbody;
 
-
+    static public Vector3 LAUNCH_POS
+    {
+        get
+        {
+            if (S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+    }
 
     void Awake()
     {
+        S = this;
+
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchpoint = launchPointTrans.gameObject;
         launchpoint.SetActive(false);
@@ -25,21 +36,17 @@ public class Slingshot : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        // print("Slingshot:OnMouseEnter()");
         launchpoint.SetActive(true);
-
     }
     void OnMouseExit()
     {
-        // print("Slingshot:OnMouseExit()");
         launchpoint.SetActive(false);
     }
     void OnMouseDown()
     {
         aimingMode = true;
         projectile = Instantiate(prefabProjectile) as GameObject;
-        projectile.transform.position = launchPos;
-        projectile.GetComponent<Rigidbody>().isKinematic = true;
+        projectile.transform.position = launchPos; 
 
         projectileRigidbody = projectile.GetComponent<Rigidbody>();
         projectileRigidbody.isKinematic = true;
@@ -53,6 +60,7 @@ public class Slingshot : MonoBehaviour
         mousePos2D.z = -Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
         Vector3 mouseDelta = mousePos3D - launchPos;
+
         float maxMagnitude = this.GetComponent<SphereCollider>().radius;
         if(mouseDelta.magnitude > maxMagnitude) {
             mouseDelta.Normalize();
@@ -69,6 +77,8 @@ public class Slingshot : MonoBehaviour
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
             FollowCam.POI = projectile;
             projectile = null;
+            MissionDemolition.ShotFired();
+            ProjectileLine.S.poi = projectile;
         }      
     }
   
