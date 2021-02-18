@@ -16,5 +16,7 @@ public class LaunchProjectile : MonoBehaviour
             ball.GetComponent<Rigidbody>().AddRelativeForce(new Vector3
                                                  (0, launchVelocity, 0));
         }
+
+
     }
 }
