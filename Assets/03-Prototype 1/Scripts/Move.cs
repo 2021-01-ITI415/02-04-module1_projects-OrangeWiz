@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Move : MonoBehaviour
         {
             velocity.y = -2f;
         }
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -42,5 +44,12 @@ public class Move : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if(Input.GetButtonDown("Fire2"))
+        {
+         
+          SceneManager.LoadScene("Main-Prototype 1");
+            
+        }
     }
 }

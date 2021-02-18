@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00-Scenes/Main-MissionDemolition.unity
     guid: 36a4f7af764a74bfab5a5ff20375bcdb
-  - enabled: 1
-    path: Assets/00-Scenes/Main-Prototype 1.unity
-    guid: 84930580229bb4f138179e160aab9b89
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/00-Scenes/ApplePicker.unity
     guid: da01b43b39396424b9318cbcc7d7e800
+  - enabled: 1
+    path: Assets/00-Scenes/Main-Prototype 1.unity
+    guid: 46c72ba60b2e31f498678fefe6484564
   m_configObjects: {}
